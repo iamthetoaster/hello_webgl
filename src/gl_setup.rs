@@ -9,8 +9,6 @@ pub fn initialize_webgl_context() -> Result<WebGlRenderingContext, JsValue> {
     let canvas: web_sys::HtmlCanvasElement = canvas.dyn_into::<web_sys::HtmlCanvasElement>()?;
     let gl: WebGlRenderingContext = canvas.get_context("webgl")?.unwrap().dyn_into()?;
 
-    gl.enable_vertex_attrib_array(0);
-
     gl.enable(GL::BLEND);
     gl.blend_func(GL::SRC_ALPHA, GL::ONE_MINUS_SRC_ALPHA);
     gl.clear_color(0.0, 0.0, 0.0, 1.0);

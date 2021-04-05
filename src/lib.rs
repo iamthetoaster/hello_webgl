@@ -24,6 +24,7 @@ macro_rules! console_log {
 pub struct RenderClient {
     gl: WebGlRenderingContext,
     program_color_2d: programs::Color2d,
+    program_gradient_2d: programs::Color2dGradient,
 }
 
 #[wasm_bindgen]
@@ -34,6 +35,7 @@ impl RenderClient {
         let gl = gl_setup::initialize_webgl_context().unwrap();
         RenderClient {
             program_color_2d: programs::Color2d::new(&gl),
+            program_gradient_2d: programs::Color2dGradient::new(&gl),
             gl: gl,
         }
     }
@@ -60,7 +62,20 @@ impl RenderClient {
             (curr_state.canvas_width + measure) / 2.0,
             curr_state.canvas_width,
             curr_state.canvas_height,
-        )
+        );
+
+        let border_width = border_width * 2.0;
+        let measure = curr_state.canvas_width.min(curr_state.canvas_height) - 2.0 * border_width;
+
+        self.program_gradient_2d.render(
+            &self.gl,
+            (curr_state.canvas_height - measure) / 2.0,
+            (curr_state.canvas_height + measure) / 2.0,
+            (curr_state.canvas_width - measure) / 2.0,
+            (curr_state.canvas_width + measure) / 2.0,
+            curr_state.canvas_width,
+            curr_state.canvas_height,
+        );
     }
 
 }

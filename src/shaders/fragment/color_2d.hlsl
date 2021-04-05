@@ -1,8 +1,5 @@
 precision mediump float;
 
-uniform vec4 uColor;
-uniform float uOpacity;
-
 varying vec2 v_position;
 
 float sinh(float x) {
@@ -20,19 +17,15 @@ float tanh(float x) {
     return sin_h / cos_h;
 }
 
-vec4 bounded_mix(vec4 start, vec4 end, float amount) {
-    return mix(start, end, tanh(amount));
-}
-
 vec4 color_from_angle(float theta) {
     const float PI = 3.14159265;
     const float TWO_PI = PI * 2.0;
     if (theta < 0.0) {
         theta = theta + TWO_PI;
     }
-    // while (theta > TWO_PI) {
-    //     theta = theta - TWO_PI;
-    // }
+    if (theta > TWO_PI) {
+        theta = theta - TWO_PI;
+    }
     const float TWO_THIRDS_PI = PI * 2.0 / 3.0;
     if (theta < TWO_THIRDS_PI) {
         float amount = theta / TWO_THIRDS_PI;
@@ -49,11 +42,5 @@ vec4 color_from_angle(float theta) {
 }
 
 void main() {
-    vec4 main_color = vec4(uColor.rgb, uOpacity);
-
-    gl_FragColor = mix(
-        main_color,  
-        color_from_angle(tanh(tan(atan(v_position.y / v_position.x) * 3.0)) + cos(length(v_position))),
-        0.99
-    );
+    gl_FragColor = color_from_angle(tanh(tan(atan(v_position.y / v_position.x) * 3.0)) + cos(length(v_position)));
 }
