@@ -1,0 +1,15 @@
+{
+  "name": "hello_webgl",
+  "collaborators": [
+    "Toaster <14080501+iamthetoaster@users.noreply.github.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "hello_webgl_bg.wasm",
+    "hello_webgl.js",
+    "hello_webgl.d.ts"
+  ],
+  "module": "hello_webgl.js",
+  "types": "hello_webgl.d.ts",
+  "sideEffects": false
+}
