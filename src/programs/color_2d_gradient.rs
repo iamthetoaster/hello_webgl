@@ -1,6 +1,6 @@
 use wasm_bindgen::JsCast;
 use web_sys::*;
-use web_sys::WebGlRenderingContext as GL;
+use web_sys::WebGl2RenderingContext as GL;
 use js_sys::WebAssembly;
 use crate::common_funcs as cf;
 // use crate::{log, console_log};
@@ -15,7 +15,7 @@ pub struct Color2dGradient {
 }
 
 impl Color2dGradient {
-    pub fn new(gl: &WebGlRenderingContext) -> Self {
+    pub fn new(gl: &WebGl2RenderingContext) -> Self {
         let program = cf::link_program(
             &gl,
             include_str!("../shaders/vertex/color_2d_gradient.hlsl"),
@@ -77,7 +77,7 @@ impl Color2dGradient {
 
     pub fn render(
         &self,
-        gl: &WebGlRenderingContext,
+        gl: &WebGl2RenderingContext,
         bottom: f32,
         top: f32,
         left: f32,

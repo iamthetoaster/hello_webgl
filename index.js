@@ -1,7 +1,7 @@
 import init, {RenderClient} from './pkg/hello_webgl.js';
 
 const canvas = document.getElementById("rustCanvas");
-const gl = canvas.getContext("webgl", {antialias: true} );
+const gl = canvas.getContext("webgl2", {antialias: true} );
 
 async function start() {
     await init();

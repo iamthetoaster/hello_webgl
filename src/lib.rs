@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 use web_sys::*;
-use web_sys::WebGlRenderingContext as GL;
+use web_sys::WebGl2RenderingContext as GL;
 mod gl_setup;
 mod common_funcs;
 mod programs;
@@ -22,7 +22,7 @@ macro_rules! console_log {
 
 #[wasm_bindgen]
 pub struct RenderClient {
-    gl: WebGlRenderingContext,
+    gl: WebGl2RenderingContext,
     program_color_2d: programs::Color2d,
     program_gradient_2d: programs::Color2dGradient,
 }
@@ -64,18 +64,18 @@ impl RenderClient {
             curr_state.canvas_height,
         );
 
-        let border_width = border_width * 2.0;
-        let measure = curr_state.canvas_width.min(curr_state.canvas_height) - 2.0 * border_width;
+        // let border_width = border_width * 2.0;
+        // let measure = curr_state.canvas_width.min(curr_state.canvas_height) - 2.0 * border_width;
 
-        self.program_gradient_2d.render(
-            &self.gl,
-            (curr_state.canvas_height - measure) / 2.0,
-            (curr_state.canvas_height + measure) / 2.0,
-            (curr_state.canvas_width - measure) / 2.0,
-            (curr_state.canvas_width + measure) / 2.0,
-            curr_state.canvas_width,
-            curr_state.canvas_height,
-        );
+        // self.program_gradient_2d.render(
+        //     &self.gl,
+        //     (curr_state.canvas_height - measure) / 2.0,
+        //     (curr_state.canvas_height + measure) / 2.0,
+        //     (curr_state.canvas_width - measure) / 2.0,
+        //     (curr_state.canvas_width + measure) / 2.0,
+        //     curr_state.canvas_width,
+        //     curr_state.canvas_height,
+        // );
     }
 
 }

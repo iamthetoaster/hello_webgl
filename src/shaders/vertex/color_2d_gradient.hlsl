@@ -1,9 +1,11 @@
-attribute vec4 aPosition;
-attribute vec4 aColor;
+#version 300 es
+
+in vec4 aPosition;
+in vec4 aColor;
 
 uniform mat4 uTransform;
 
-varying lowp vec4 vColor;
+out lowp vec4 vColor;
 
 void main() {
     vec4 position = uTransform * aPosition;
