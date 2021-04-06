@@ -33,5 +33,5 @@ out vec4 fragColor;
 void main() {
     // fragColor = color_from_angle(tanh(tan(atan(v_position.y / v_position.x) * 3.0)) + cos(length(v_position)));
     ivec2 position = ivec2(v_position);
-    fragColor = (position.x ^ position.y) % 19 == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
+    fragColor = (position.x | position.y) % 19 == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
 }

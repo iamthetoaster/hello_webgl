@@ -86,7 +86,7 @@ impl Color2d {
 
         // console_log!("Top: {}, Bottom: {}, Left: {} Right: {}, Width: {}, Height: {}", top, bottom, left, right, canvas_width, canvas_height);
         
-        gl.uniform1f(Some(&self.u_size), canvas_width);
+        gl.uniform1f(Some(&self.u_size), right - left);
 
         let translation_mat = cf::translation_matrix(
             2.0 * left / canvas_width - 1.0,
