@@ -9,6 +9,6 @@ out vec2 v_position;
 
 void main() {
     vec4 position = uTransform * aPosition;
-    v_position = aPosition.xy * uSize - vec2(uSize, uSize) / 2.0;
+    v_position = aPosition.xy * uSize; // - vec2(uSize, uSize) / 2.0;
     gl_Position = position;
 }
