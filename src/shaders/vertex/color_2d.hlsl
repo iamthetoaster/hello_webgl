@@ -1,13 +1,14 @@
 #version 300 es
 
-in vec4 aPosition;
 uniform mat4 uTransform;
+uniform float uSize;
+
+in vec4 aPosition;
 
 out vec2 v_position;
 
 void main() {
     vec4 position = uTransform * aPosition;
-    float size = 400.0;
-    v_position = aPosition.xy * size - vec2(size, size) / 2.0;
+    v_position = aPosition.xy * uSize - vec2(uSize, uSize) / 2.0;
     gl_Position = position;
 }

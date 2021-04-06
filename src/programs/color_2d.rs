@@ -10,7 +10,9 @@ pub struct Color2d {
     rect_vertices_buffer: WebGlBuffer,
     // u_color: WebGlUniformLocation,
     // u_opacity: WebGlUniformLocation,
+    // u_frame: WebGlUniformLocation,
     u_transform: WebGlUniformLocation,
+    u_size: WebGlUniformLocation,
     rect_vertices_len: usize,
 }
 
@@ -48,7 +50,9 @@ impl Color2d {
         Self {
             // u_color: gl.get_uniform_location(&program, "uColor").unwrap(),
             // u_opacity: gl.get_uniform_location(&program, "uOpacity").unwrap(),
+            // u_frame: gl.get_uniform_location(&program, "uFrame").unwrap(),
             u_transform: gl.get_uniform_location(&program, "uTransform").unwrap(),
+            u_size: gl.get_uniform_location(&program, "uSize").unwrap(),
             program: program,
             rect_vertices_buffer: buffer_rect,
             rect_vertices_len: vertices_rect.len(),
@@ -82,6 +86,8 @@ impl Color2d {
 
         // console_log!("Top: {}, Bottom: {}, Left: {} Right: {}, Width: {}, Height: {}", top, bottom, left, right, canvas_width, canvas_height);
         
+        gl.uniform1f(Some(&self.u_size), canvas_width);
+
         let translation_mat = cf::translation_matrix(
             2.0 * left / canvas_width - 1.0,
             2.0 * bottom / canvas_height - 1.0,

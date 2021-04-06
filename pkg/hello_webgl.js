@@ -385,6 +385,9 @@ async function init(input) {
     imports.wbg.__wbg_shaderSource_ed7a4aff709aac74 = function(arg0, arg1, arg2, arg3) {
         getObject(arg0).shaderSource(getObject(arg1), getStringFromWasm0(arg2, arg3));
     };
+    imports.wbg.__wbg_uniform1f_36ec670bb2ed1573 = function(arg0, arg1, arg2) {
+        getObject(arg0).uniform1f(getObject(arg1), arg2);
+    };
     imports.wbg.__wbg_useProgram_0c20a8b7d005f144 = function(arg0, arg1) {
         getObject(arg0).useProgram(getObject(arg1));
     };
