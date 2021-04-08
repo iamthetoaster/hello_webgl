@@ -1,37 +1,25 @@
 #version 300 es
+#define PI 3.14159265359
+#define HALF_PI 1.57079632679
+#define TAU 6.28318530718
 
 precision mediump float;
+
+uniform float uTime;
 
 in vec2 v_position;
 
 out vec4 fragColor;
 
-// vec4 color_from_angle(float theta) {
-//     const float PI = 3.14159265;
-//     const float TWO_PI = PI * 2.0;
-//     if (theta < 0.0) {
-//         theta = theta + TWO_PI;
-//     }
-//     if (theta > TWO_PI) {
-//         theta = theta - TWO_PI;
-//     }
-//     const float TWO_THIRDS_PI = PI * 2.0 / 3.0;
-//     if (theta < TWO_THIRDS_PI) {
-//         float amount = theta / TWO_THIRDS_PI;
-//         return mix(vec4(1.0, 0.0, 0.0, 1.0), vec4(0.0, 1.0, 0.0, 1.0), amount);
-//     }
-//     theta = theta - TWO_THIRDS_PI;
-//     if (theta < TWO_THIRDS_PI) {
-//         float amount = theta / TWO_THIRDS_PI;
-//         return mix(vec4(0.0, 1.0, 0.0, 1.0), vec4(0.0, 0.0, 1.0, 1.0), amount);
-//     }
-//     theta = theta - TWO_THIRDS_PI;
-//     float amount = theta / TWO_THIRDS_PI;
-//     return mix(vec4(0.0, 0.0, 1.0, 1.0), vec4(1.0, 0.0, 0.0, 1.0), amount);
-// }
+const float CYCLE_TIME = 38.0;
+
+const float START_DIVISOR = 2.0;
+const float END_DIVISOR = 40.0;
 
 void main() {
-    // fragColor = color_from_angle(tanh(tan(atan(v_position.y / v_position.x) * 3.0)) + cos(length(v_position)));
     ivec2 position = ivec2(v_position);
-    fragColor = (position.x | position.y) % 19 == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
+    int i_time = int(
+        ((mod(uTime, CYCLE_TIME) / CYCLE_TIME) * (END_DIVISOR - START_DIVISOR)) + START_DIVISOR
+    );
+    fragColor = (position.x | position.y) % i_time == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
 }

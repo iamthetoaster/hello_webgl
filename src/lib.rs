@@ -62,6 +62,7 @@ impl RenderClient {
             (curr_state.canvas_width + measure) / 2.0,
             curr_state.canvas_width,
             curr_state.canvas_height,
+            curr_state.time,
         );
 
         // let border_width = border_width * 2.0;
