@@ -65,7 +65,7 @@ impl RenderClient {
             curr_state.time,
         );
 
-        // let border_width = border_width * 2.0;
+        // let border_width = border_width * 4.0;
         // let measure = curr_state.canvas_width.min(curr_state.canvas_height) - 2.0 * border_width;
 
         // self.program_gradient_2d.render(
