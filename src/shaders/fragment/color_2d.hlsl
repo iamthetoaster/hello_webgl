@@ -25,8 +25,18 @@ void main() {
 
     float f_time = fract(time);
 
-    vec4 curr_color = (position.x ^ position.y) % i_time == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
-    vec4 next_color = (position.x ^ position.y) % (i_time + 1) == 0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.0, 0.0, 0.0, 1.0);
+    vec4 curr_color = vec4(
+        (position.x ^ position.y) % i_time == 0,
+        (position.x | position.y) % i_time == 0,
+        (position.x & position.y) % i_time == 0,
+        1.0
+    );
+    vec4 next_color = vec4(
+        (position.x ^ position.y) % (i_time + 1) == 0,
+        (position.x | position.y) % (i_time + 1) == 0,
+        (position.x & position.y) % (i_time + 1) == 0,
+        1.0
+    );
 
     fragColor = mix(curr_color, next_color, f_time);
 }
