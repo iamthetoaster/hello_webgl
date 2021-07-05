@@ -41,7 +41,7 @@ async function start() {
             client.render();
         }
     }
-     frame();
+    frame();
 }
 
 start()
